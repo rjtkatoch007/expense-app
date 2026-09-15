@@ -1,8 +1,8 @@
 const { DataTypes } = require("sequelize");
 const sequelize = require("../config/database");
 
-const User = sequelize.define(
-    "User",
+const Expense = sequelize.define(
+    "Expense",
     {
         id: {
             type: DataTypes.INTEGER,
@@ -10,30 +10,30 @@ const User = sequelize.define(
             autoIncrement: true
         },
 
-        name: {
+        amount: {
+            type: DataTypes.DECIMAL(10, 2),
+            allowNull: false
+        },
+
+        description: {
             type: DataTypes.STRING(255),
             allowNull: false
         },
 
-        email: {
-            type: DataTypes.STRING(255),
-            allowNull: false,
-            unique: true,
-
-            validate: {
-                isEmail: true
-            }
+        category: {
+            type: DataTypes.STRING(100),
+            allowNull: false
         },
 
-        password: {
-            type: DataTypes.STRING(255),
+        userId: {
+            type: DataTypes.INTEGER,
             allowNull: false
         }
     },
     {
-        tableName: "users",
+        tableName: "expenses",
         timestamps: true
     }
 );
 
-module.exports = User;
+module.exports = Expense;
