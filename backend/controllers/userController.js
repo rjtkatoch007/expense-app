@@ -166,7 +166,7 @@ const login = async (req, res) => {
             return res.status(401).json({
 
                 message:
-                    "Invalid email or password"
+                    "User not authorized"
 
             });
 
