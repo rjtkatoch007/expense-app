@@ -51,7 +51,7 @@ const signup = async (req, res) => {
 
         }
 
-
+        //password encrypted
         const hashedPassword =
             await bcrypt.hash(password, 10);
 
