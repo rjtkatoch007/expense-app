@@ -397,7 +397,56 @@ document.getElementById(
     }
 );
 
+//Add Cashfree checkout
+const premiumButton =
+    document.getElementById("premiumButton");
 
+premiumButton.addEventListener("click", async () => {
+
+    try {
+
+        const token =
+            localStorage.getItem("token");
+
+        const response = await fetch(
+            "http://localhost:3000/payment/create-order",
+            {
+                method: "POST",
+
+                headers: {
+                    "Content-Type": "application/json",
+                    "Authorization": `Bearer ${token}`
+                }
+            }
+        );
+
+        const data = await response.json();
+
+        if (!response.ok) {
+            alert(data.message || "Unable to create order");
+            return;
+        }
+
+
+        const cashfree = Cashfree({
+            mode: "sandbox"
+        });
+
+
+        cashfree.checkout({
+            paymentSessionId:
+                data.paymentSessionId,
+
+            redirectTarget: "_self"
+        });
+
+    } catch (error) {
+
+        console.error(error);
+
+        alert("Unable to start payment");
+    }
+});
 
 // Load old expenses when page opens
 

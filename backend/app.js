@@ -1,6 +1,7 @@
 const express = require("express");
 const cors = require("cors");
 
+
 require("dotenv").config();
 
 const sequelize =
@@ -13,12 +14,16 @@ const User =
 const Expense =
     require("./models/Expense");
 
+const Order = require("./models/Order");    
+
 
 const userRoutes =
     require("./routes/userRoutes");
 
 const expenseRoutes =
     require("./routes/expenseRoutes");
+
+const paymentRoutes = require("./routes/paymentRoutes");    
 
 
 const app = express();
@@ -45,6 +50,14 @@ User.hasMany(Expense, {
 });
 
 Expense.belongsTo(User, {
+    foreignKey: "userId"
+});
+
+User.hasMany(Order, {
+    foreignKey: "userId"
+});
+
+Order.belongsTo(User, {
     foreignKey: "userId"
 });
 
@@ -75,7 +88,7 @@ app.use(
     expenseRoutes
 );
 
-
+app.use("/payment", paymentRoutes);
 // Start server
 
 const startServer = async () => {
@@ -89,7 +102,7 @@ const startServer = async () => {
         );
 
 
-        await sequelize.sync();
+        await sequelize.sync({ alter: true });
 
         console.log(
             "Database tables are ready"
