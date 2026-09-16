@@ -25,6 +25,9 @@ const expenseRoutes =
 
 const paymentRoutes = require("./routes/paymentRoutes");    
 
+const premiumRoutes =
+    require("./routes/premiumRoutes");
+
 
 const app = express();
 
@@ -40,6 +43,11 @@ app.use(
     express.urlencoded({
         extended: true
     })
+);
+
+app.use(
+    "/premium",
+    premiumRoutes
 );
 
 

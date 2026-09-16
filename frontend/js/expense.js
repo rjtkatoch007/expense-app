@@ -9,7 +9,16 @@ const user =
     JSON.parse(
         localStorage.getItem("user")
     );
+    
+const premiumMessage =
+    document.getElementById("premiumMessage");
 
+
+if (user && user.isPremium) {
+
+    premiumMessage.classList.remove("d-none");
+
+}
 
 // Don't allow access without login
 
@@ -51,6 +60,21 @@ const expenseMessage =
     document.getElementById(
         "expenseMessage"
     );
+
+const leaderboardButton =
+    document.getElementById(
+        "leaderboardButton"
+    );
+
+leaderboardButton.addEventListener(
+    "click",
+    () => {
+
+        window.location.href =
+            "leaderboard.html";
+
+    }
+);    
 
 
 // =====================================

@@ -151,6 +151,17 @@ const getPaymentStatus = async (req, res) => {
             await order.update({
                 status: "PAID"
             });
+            
+            await User.update(
+        {
+            isPremium: true
+        },
+        {
+            where: {
+                id: req.user.id
+            }
+        }
+    );
 
             return res.status(200).json({
                 orderId,

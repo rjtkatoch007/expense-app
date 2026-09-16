@@ -197,7 +197,8 @@ const login = async (req, res) => {
 
                 name: user.name,
 
-                email: user.email
+                email: user.email,
+                isPremium: user.isPremium
 
             }
 
