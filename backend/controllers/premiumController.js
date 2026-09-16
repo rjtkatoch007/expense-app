@@ -43,7 +43,7 @@ const showLeaderboard = async (req, res) => {
             ]
         });
 
-
+        console.log(users);
         const leaderboard = users.map(user => {
 
             const expenses = user.Expenses || [];
