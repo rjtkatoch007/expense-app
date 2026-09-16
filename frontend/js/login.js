@@ -60,7 +60,7 @@ loginForm.addEventListener("submit", async (event) => {
             );
 
         }
-                localStorage.setItem(
+        localStorage.setItem(
             "token",
             data.token
         );

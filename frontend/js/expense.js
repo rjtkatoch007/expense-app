@@ -16,7 +16,7 @@ const user =
 if (!token || !user) {
 
     window.location.href =
-        "./js/login.html";
+        "./login.html";
 
 }
 
