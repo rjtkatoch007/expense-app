@@ -33,8 +33,13 @@ const User = sequelize.define(
         isPremium: {
             type: DataTypes.BOOLEAN,
             defaultValue: false
+        },
+        totalexpenses: {
+        type: DataTypes.DECIMAL(12, 2),
+        defaultValue: 0
         }
     },
+       
     {
         tableName: "users",
         timestamps: true

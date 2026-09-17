@@ -27,7 +27,7 @@ async function loadLeaderboard() {
         );
 
 
-        const data =
+        const users =
             await response.json();
 
 
@@ -35,7 +35,7 @@ async function loadLeaderboard() {
 
             message.innerHTML = `
                 <div class="alert alert-danger">
-                    ${data.message}
+                    ${users.message}
                 </div>
             `;
 
@@ -46,7 +46,7 @@ async function loadLeaderboard() {
         leaderboardBody.innerHTML = "";
 
 
-        data.leaderboard.forEach(
+        users.forEach(
             (user, index) => {
 
                 const row =
@@ -61,7 +61,7 @@ async function loadLeaderboard() {
                     </td>
 
                     <td>
-                        ₹${user.totalExpense.toFixed(2)}
+                        ₹${user.totalexpenses}
                     </td>
                 `;
 

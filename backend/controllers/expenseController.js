@@ -1,4 +1,5 @@
 const Expense = require("../models/Expense");
+const User = require("../models/User");
 
 
 // ADD EXPENSE
@@ -34,6 +35,12 @@ const addExpense = async (req, res) => {
             userId: req.user.id
 
         });
+
+        await User.increment(
+            { totalexpenses: amount },
+            { where: { id: req.user.id } }
+        );
+        
 
 
         res.status(201).json({
